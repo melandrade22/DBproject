@@ -4,7 +4,7 @@ require_once("../dbconn.php");
 $id = $_GET['id'];
 
 try {
-    $stmt = $conn->prepare("DELETE FROM Dancers WHERE dancer_id=?");
+    $stmt = $conn->prepare("DELETE FROM Events WHERE event_id=?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
 } catch (Exception $e) {

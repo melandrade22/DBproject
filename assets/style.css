@@ -1,0 +1,195 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+
+h1 {
+    background: #222;
+    color: white;
+    padding: 25px;
+    margin: 0;
+    font-size: 40px;
+    text-align: center;
+}
+
+
+.menu {
+    padding: 40px;
+}
+
+.menu a {
+    display: block;
+    margin: 20px auto;
+    padding: 15px;
+    width: 60%;
+    background: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.menu a:hover {
+    background: #0056b3;
+}
+
+
+table {
+    width: 90%;
+    margin: 40px auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border: 1px solid #000000;
+}
+
+th {
+    background: #007BFF;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #000000;
+}
+
+td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    border: 1px solid #000000;
+}
+
+tr:hover {
+    background: #f1f1f1;
+}
+
+
+a {
+    color: #007BFF;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+.button-link {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 12px 20px;
+    background: #28a745;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.button-link:hover {
+    background: #1e7e34;
+}
+
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #222;
+    color: white;
+    margin-top: 40px;
+}
+
+.top-bar {
+    background: #111;
+    padding: 10px 20px;
+    text-align: right;
+}
+
+.home-button {
+    color: white;
+    background: #007BFF;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.home-button:hover {
+    background: #0056b3;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page-container {
+    flex: 1;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 50px;
+    font-size: 20px;
+}
+.content input,
+.content select{
+    margin-top: 10px;
+    margin-bottom: 40px;
+    padding: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+.content button {
+    margin-top: 5px;
+    padding: 15px;
+    width: 100%;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.card-form button:hover {
+    background: #0056b3;
+}
+.content label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+.content form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    background: white;
+    padding: 80px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.checkbox-row {
+    display: inline-table;
+    align-items: center; 
+    gap: 10px;
+    margin-top: 15px;
+    font-size: 20px;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.checkbox-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}

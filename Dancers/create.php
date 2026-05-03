@@ -1,30 +1,59 @@
-<?php
-require_once("../dbconn.php");
+<?php include("../includes/header.php"); ?>
+<?php require_once("../dbconn.php"); ?>
 
+<h1>Add Dancer</h1>
+
+<?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $first = $_POST['first_name'];
     $last = $_POST['last_name'];
     $student = isset($_POST['student_status']) ? 1 : 0;
+    $affiliation = $_POST['affiliation_id'] ?: null;
 
-    $sql = "INSERT INTO Dancers (first_name, last_name, student_status) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssi", $first, $last, $student);
+    $stmt = $conn->prepare(
+        "INSERT INTO Dancers (first_name, last_name, student_status, affiliation_id)
+         VALUES (?, ?, ?, ?)"
+    );
+    $stmt->bind_param("ssii", $first, $last, $student, $affiliation);
 
     if ($stmt->execute()) {
-        echo "<script>window.location='read.php'</script>";
+        header("Location: read.php");
+        exit;
     } else {
-        echo "Error: " . $stmt->error;
+        echo "<p class='error'>Error: {$stmt->error}</p>";
     }
-
-    $stmt->close();
-    $conn->close();
 }
 ?>
 
-<h2>Add Dancer</h2>
-<form method="POST">
-    First Name: <input type="text" name="first_name" required><br>
-    Last Name: <input type="text" name="last_name" required><br>
-    Student: <input type="checkbox" name="student_status"><br>
-    <input type="submit" value="Add">
-</form>
+<div class="content">
+    <form method="POST" class="card-form">
+
+        <label>First Name</label>
+        <input name="first_name" placeholder="First Name" required>
+
+        <label>Last Name</label>
+        <input name="last_name" placeholder="Last Name" required>
+
+        <label>Affiliation</label>
+        <select name="affiliation_id">
+            <option value="">-- Unaffiliated --</option>
+            <?php
+            $res = $conn->query("SELECT affiliation_id, affiliation_name FROM Affiliations");
+            while ($a = $res->fetch_assoc()) {
+                echo "<option value='{$a['affiliation_id']}'>{$a['affiliation_name']}</option>";
+            }
+            ?>
+        </select>
+
+        <label class="checkbox-row">
+            Current Student?
+            <input type="checkbox" name="student_status">
+        </label>
+
+        <button type="submit">Add Dancer</button>
+
+    </form>
+</div>
+
+<?php include("../includes/footer.php"); ?>

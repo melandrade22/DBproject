@@ -1,39 +1,52 @@
-<?php
-require_once('../dbconn.php');
+<?php include("../includes/header.php"); ?>
+<?php require_once("../dbconn.php"); ?>
 
-echo "<h2>Dancers List</h2>";
-echo "<table border='1'>
+<h1>Dancers</h1>
+
+<div style="text-align:center;">
+    <a href="create.php" class="button-link">+ Add Dancer</a>
+</div>
+
+<table>
 <tr>
-<th>ID</th>
-<th>First Name</th>
-<th>Last Name</th>
-<th>Student</th>
-<th>Actions</th>
-</tr>";
+    <th>ID</th>
+    <th>First</th>
+    <th>Last</th>
+    <th>Current Student</th>
+    <th>Affiliation</th>
+    <th>Actions</th>
+</tr>
 
-$sql = "SELECT dancer_id, first_name, last_name, student_status FROM Dancers";
+<?php
+$sql = "
+SELECT d.*, a.affiliation_name 
+FROM Dancers d
+LEFT JOIN Affiliations a 
+ON d.affiliation_id = a.affiliation_id
+";
+
 $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $student = $row['student_status'] ? 'Yes' : 'No';
-        echo "<tr>
+while ($row = $result->fetch_assoc()) {
+    $student = $row['student_status'] ? "Yes" : "No";
+    $aff = $row['affiliation_name'] ?? "Unaffiliated";
+
+    echo "<tr>
         <td>{$row['dancer_id']}</td>
         <td>{$row['first_name']}</td>
         <td>{$row['last_name']}</td>
         <td>{$student}</td>
+        <td>{$aff}</td>
         <td>
-            <a href='update.php?id={$row['dancer_id']}'>Update</a> | 
-            <a href='delete.php?id={$row['dancer_id']}'>Delete</a>
+            <a href='update.php?id={$row['dancer_id']}'>Edit</a>
+            <a href='delete.php?id={$row['dancer_id']}' onclick='return confirm(\"Delete?\")'>Delete</a>
         </td>
-        </tr>";
-    }
-} else {
-    echo "<tr><td colspan='5'>No dancers found</td></tr>";
+    </tr>";
 }
+?>
+</table>
 
-echo "</table>";
-echo "<br><a href='create.php'>Add New Dancer</a>";
-
-$conn->close();
+<?php
+$conn->close(); 
+include("../includes/footer.php"); 
 ?>
