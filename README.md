@@ -34,16 +34,36 @@ The system is built using:
 
 This project was developed using **Laragon** as a local development environment.
 
-### Setup Steps:
+## Setup Instructions
 
-1. Install and open Laragon
-2. Start **Apache** and **MySQL**
-3. create dbBallroom folder
-4. Place the project folder inside: laragon/www/dbBallroom
-5. Import the database:
-- Open phpMyAdmin OR MySQL console
-- Run the provided `ballroom.sql` file
-6. Open the project in your browser: http://localhost/index.php
+### 1. Install Laragon
+Install Laragon and start Apache + MySQL or XAMPP
+
+### 2. Clone repo
+Place project in Web Root: 
+For laragon: 
+C:\laragon\www\ballroom
+
+### 3. Create database
+Open MySQL Workbench or phpMyAdmin and run:
+
+RUN FILE:
+database/createBallroom.sql
+
+or 
+
+File -> Open SQL Script -> Select createBallroom.sql -> Execute
+
+### 4. Configure database
+Copy:
+config.example.php → config.php
+
+Then edit:
+DB_PASS = your MySQL password
+
+### 6. Run project
+Open:
+http://localhost/ballroom
 
 
 ---
